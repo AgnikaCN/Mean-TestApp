@@ -14,21 +14,21 @@ mongoose.connect("mongodb://localhost:27017/employee");
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => {
-  console.log("Connected to MongoDB");
+  console.log("Connected successfully to MongoDB");
 });
 
 // const API_URL = "https://jsonplaceholder.typicode.com";
 
 // GET request for posts
-app.get("/posts", async (req, res) => {
-  try {
-    const resp = await axios.get("`${API_URL}/posts");
+// app.get("/posts", async (req, res) => {
+//   try {
+//     const resp = await axios.get("`${API_URL}/posts");
 
-    res.json(resp.data);
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching posts" });
-  }
-});
+//     res.json(resp.data);
+//   } catch (error) {
+//     res.status(500).json({ error: "Error fetching posts" });
+//   }
+// });
 
 // GET request for employees
 app.get("/employees", async (req, res) => {
@@ -70,6 +70,19 @@ app.patch("/employees/:id", async (req, res) => {
         res.send(item);
       }
     );
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// DELETE request for employees
+app.delete("/employees/:id", async (req, res) => {
+  try {
+    const item = await Item.findByIdAndDelete(req.params.id);
+    if (!item) {
+      return res.status(404).send;
+    }
+    res.send(item);
   } catch (error) {
     res.status(500).send(error);
   }
