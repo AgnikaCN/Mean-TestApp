@@ -10,7 +10,7 @@ app.use(express.json());
 // CONNECT TO MONGODB
 
 mongoose.connect(
-  "mongodb://testapp-cn.6pfbris.mongodb.net/employee.EmployeeDB"
+  "mongodb://agnika:CN@2024@testapp-cn.6pfbris.mongodb.net/employee"
 );
 
 const db = mongoose.connection;

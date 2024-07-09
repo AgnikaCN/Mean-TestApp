@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
+import Item from "./demomodel.js";
 const app = express();
 dotenv.config();
 
@@ -22,3 +22,13 @@ mongoose
     console.error("Error connecting to MongoDB:", error.message);
     process.exit(1); // Exit process with failure
   });
+
+// GET request for employees
+app.get("/employees", async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.status(200).send(items);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
