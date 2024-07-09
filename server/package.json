@@ -2,13 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "backend of test app using nodejs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "agnika",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
     "express": "^4.19.2",
     "mongoose": "^8.4.5"
   },
